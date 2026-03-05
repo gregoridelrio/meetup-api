@@ -50,4 +50,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function organisedMatches()
+    {
+        return $this->hasMany(FootballMatch::class, 'organizer_id');
+    }
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
