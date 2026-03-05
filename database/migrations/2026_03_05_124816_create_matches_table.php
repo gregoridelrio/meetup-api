@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->timestamp('starts_at');
             $table->integer('duration');
-            $table->string('match_type');
+            $table->enum('match_type', ['5v5', '7v7', '11v11']);
             $table->integer('max_players');
-            $table->string('required_level');
+            $table->enum('required_level', ['beginner', 'intermediate', 'advanced']);
             $table->decimal('price', 8, 2)->default(0);
             $table->string('location_name', 100);
             $table->string('address');

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('match_id')->constrained('matches')->onDelete('cascade');
-            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

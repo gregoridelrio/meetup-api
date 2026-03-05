@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone', 9)->nullable();
-            $table->string('skill_level')->nullable();
-            $table->string('favourite_position')->nullable();
-            $table->string('role')->default('player');
+            $table->enum('skill_level', ['beginner', 'intermediate', 'advanced'])->nullable();
+            $table->enum('favourite_position', ['goalkeeper', 'defender', 'midfielder', 'striker'])->nullable();
+            $table->enum('role', ['admin', 'player', 'organizer'])->default('player');
         });
     }
 
