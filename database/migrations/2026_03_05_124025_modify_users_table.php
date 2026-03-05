@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('phone', 9)->nullable();
+            $table->enum('skill_level', ['beginner', 'intermediate', 'advanced'])->nullable();
+            $table->enum('favourite_position', ['goalkeeper', 'defender', 'midfielder', 'striker'])->nullable();
+            $table->enum('role', ['admin', 'player', 'organizer'])->default('player');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['phone', 'skill_level', 'favourite_position', 'role']);
+        });
+    }
+};
