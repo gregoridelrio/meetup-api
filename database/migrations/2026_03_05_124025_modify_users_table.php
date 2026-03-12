@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('phone', 9)->nullable();
             $table->enum('skill_level', ['beginner', 'intermediate', 'advanced'])->nullable();
             $table->enum('favourite_position', ['goalkeeper', 'defender', 'midfielder', 'striker'])->nullable();
-            $table->enum('role', ['admin', 'player', 'organizer'])->default('player');
+            $table->enum('role', ['admin', 'player'])->default('player');
         });
     }
 
