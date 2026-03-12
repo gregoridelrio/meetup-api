@@ -52,6 +52,12 @@ class FootballMatchController extends Controller
 
     public function update(Request $request, FootballMatch $footballMatch): JsonResponse
     {
+        if (Auth::id() !== $footballMatch->organizer_id && !Auth::user()->hasRole('admin')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
+
         $validated = $request->validate([
             'description' => 'nullable|string|max:255',
             'starts_at' => 'nullable|date',
