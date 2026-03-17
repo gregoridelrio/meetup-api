@@ -94,3 +94,16 @@ it('user can see their own registrations', function () {
 
     $response->assertStatus(200)->assertJsonCount(2);
 });
+
+it('authenticated user can see all registrations', function () {
+    $user = User::factory()->create();
+    $match = FootballMatch::factory()->create();
+
+    Registration::factory()->count(3)->create(['match_id' => $match->id]);
+
+    Passport::actingAs($user);
+
+    $response = $this->getJson("/api/matches/{$match->id}/players");
+
+    $response->assertStatus(200)->assertJsonCount(3);
+});
