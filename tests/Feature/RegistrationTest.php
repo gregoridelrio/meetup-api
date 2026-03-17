@@ -83,8 +83,10 @@ it('user cannot unregister from a match they are not registered for', function (
 
 it('user can see their own registrations', function () {
     $user = User::factory()->create();
+    $otherUser = User::factory()->create();
 
     Registration::factory()->count(2)->create(['user_id' => $user->id]);
+    Registration::factory()->count(2)->create(['user_id' => $otherUser->id]);
 
     Passport::actingAs($user);
 
