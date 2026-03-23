@@ -184,18 +184,494 @@
                 ]
             }
         },
-        "/api/matches/{match}/comments": {
+        "/api/matches/{footballMatch}/comments": {
             "get": {
                 "tags": [
                     "Comments"
                 ],
-                "summary": "Listar comentarios",
-                "operationId": "aafe9b903211d5fbcee6374cc43e4c8f",
+                "summary": "Get comments of a match",
+                "operationId": "cf9a4c0dc18b479fe023296c8586b018",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "List of comments"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Create a comment for a match",
+                "operationId": "560dce054e7a6fd34b99a1a880b75e69",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "content"
+                                ],
+                                "properties": {
+                                    "content": {
+                                        "type": "string",
+                                        "example": "Apuntado al partido!"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Comment created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/matches": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Get list of matches",
+                "operationId": "c0735c7be1ec75cab53dd45bfed420ef",
+                "responses": {
+                    "200": {
+                        "description": "List of matches"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Create a new match",
+                "operationId": "6d1c46be4db252cc42bd1a24914b76bb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "starts_at",
+                                    "duration",
+                                    "match_type",
+                                    "max_players",
+                                    "location_name",
+                                    "address",
+                                    "city"
+                                ],
+                                "properties": {
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Partido de futbol casual"
+                                    },
+                                    "starts_at": {
+                                        "type": "string",
+                                        "example": "2026-04-01 18:00:00"
+                                    },
+                                    "duration": {
+                                        "type": "integer",
+                                        "example": 90
+                                    },
+                                    "match_type": {
+                                        "type": "string",
+                                        "example": "7v7"
+                                    },
+                                    "max_players": {
+                                        "type": "integer",
+                                        "example": 14
+                                    },
+                                    "required_level": {
+                                        "type": "string",
+                                        "enum": [
+                                            "beginner",
+                                            "intermediate",
+                                            "advanced"
+                                        ]
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "example": 5
+                                    },
+                                    "location_name": {
+                                        "type": "string",
+                                        "example": "Camp Municipal"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Carrer Gran Via 1"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Barcelona"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Match created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/matches/{footballMatch}": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Get a match by ID",
+                "operationId": "65ff32a940e20c21994a325890150c37",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Match details"
+                    },
+                    "404": {
+                        "description": "Match not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Update a match",
+                "operationId": "9c25d3b62e762ec2f29985ed0fb4bc5a",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Partido modificado"
+                                    },
+                                    "starts_at": {
+                                        "type": "string",
+                                        "example": "2026-04-01 18:00:00"
+                                    },
+                                    "duration": {
+                                        "type": "integer",
+                                        "example": 90
+                                    },
+                                    "match_type": {
+                                        "type": "string",
+                                        "example": "7v7"
+                                    },
+                                    "max_players": {
+                                        "type": "integer",
+                                        "example": 14
+                                    },
+                                    "required_level": {
+                                        "type": "string",
+                                        "enum": [
+                                            "beginner",
+                                            "intermediate",
+                                            "advanced"
+                                        ]
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "example": 5
+                                    },
+                                    "location_name": {
+                                        "type": "string",
+                                        "example": "Camp Municipal"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Carrer Gran Via 1"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Barcelona"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "open",
+                                            "full",
+                                            "cancelled"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Match updated successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Match not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Delete a match",
+                "operationId": "14612e734d23d8cf6ad32497c4ae1d65",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Match deleted successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Match not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/matches/count": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Get total available matches",
+                "operationId": "2b34313f06a90197bc5bea7cfcebc673",
+                "responses": {
+                    "200": {
+                        "description": "Total available matches"
+                    }
+                }
+            }
+        },
+        "/api/matches/{footballMatch}/register": {
+            "post": {
+                "tags": [
+                    "Registrations"
+                ],
+                "summary": "Register for a match",
+                "operationId": "91d657acc115fa2d6971100ea716247b",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Registered successfully"
+                    },
+                    "400": {
+                        "description": "Match is full or already registered"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Registrations"
+                ],
+                "summary": "Unregister from a match",
+                "operationId": "0bc6bfffe36ce1ed280317a62b51147c",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Unregistered successfully"
+                    },
+                    "400": {
+                        "description": "Not registered for this match"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/matches/{footballMatch}/players": {
+            "get": {
+                "tags": [
+                    "Registrations"
+                ],
+                "summary": "Get players registered to a match",
+                "operationId": "3cd6266d8e12520913be7484939fc52b",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of players"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/matches": {
+            "get": {
+                "tags": [
+                    "Registrations"
+                ],
+                "summary": "Get matches of authenticated user",
+                "operationId": "ec6614b75d2e23cf9b93c195fc231f2e",
+                "responses": {
+                    "200": {
+                        "description": "List of user matches"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
@@ -217,6 +693,14 @@
         {
             "name": "Comments",
             "description": "Comments"
+        },
+        {
+            "name": "Matches",
+            "description": "Matches"
+        },
+        {
+            "name": "Registrations",
+            "description": "Registrations"
         }
     ]
 }
