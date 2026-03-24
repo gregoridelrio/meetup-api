@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use OpenApi\Attributes as OA;
+use App\Http\Resources\FootballMatchResource;
 
 class FootballMatchController extends Controller
 {
@@ -20,7 +21,7 @@ class FootballMatchController extends Controller
     {
         $matches = FootballMatch::with('organizer')->get();
 
-        return response()->json($matches, 200);
+        return response()->json(FootballMatchResource::collection($matches), 200);
     }
 
     #[OA\Post(
@@ -73,7 +74,7 @@ class FootballMatchController extends Controller
 
         return response()->json([
             'message' => 'Match created successfully',
-            'match' => $match,
+            'match' => new FootballMatchResource($match),
         ], 201);
     }
 
@@ -95,7 +96,7 @@ class FootballMatchController extends Controller
     {
         $footballMatch->load('organizer', 'registrations', 'comments');
 
-        return response()->json($footballMatch, 200);
+        return response()->json(new FootballMatchResource($footballMatch), 200);
     }
 
     #[OA\Put(
@@ -159,7 +160,7 @@ class FootballMatchController extends Controller
 
         return response()->json([
             'message' => 'Match updated successfully',
-            'match' => $footballMatch,
+            'match' => new FootballMatchResource($footballMatch),
         ], 200);
     }
 

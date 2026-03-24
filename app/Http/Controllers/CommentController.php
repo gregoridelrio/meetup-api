@@ -7,6 +7,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\CommentResource;
 use OpenApi\Attributes as OA;
 
 class CommentController extends Controller
@@ -23,7 +24,7 @@ class CommentController extends Controller
     {
         $comments = $footballMatch->comments()->with('user')->get();
 
-        return response()->json($comments, 200);
+        return response()->json(CommentResource::collection($comments), 200);
     }
 
     #[OA\Post(
@@ -59,7 +60,7 @@ class CommentController extends Controller
 
         return response()->json([
             'message' => 'Comment created successfully',
-            'comment' => $comment
+            'comment' => new CommentResource($comment)
         ], 201);
     }
 }
