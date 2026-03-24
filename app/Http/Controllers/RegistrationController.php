@@ -6,6 +6,8 @@ use App\Models\FootballMatch;
 use App\Models\Registration;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\FootballMatchResource;
+use App\Http\Resources\RegistrationResource;
 use OpenApi\Attributes as OA;
 
 class RegistrationController extends Controller
@@ -53,7 +55,7 @@ class RegistrationController extends Controller
 
         return response()->json([
             'message' => 'Registered successfully',
-            'registration' => $registration,
+            'registration' => new RegistrationResource($registration),
         ], 201);
     }
 
@@ -113,7 +115,7 @@ class RegistrationController extends Controller
     {
         $players = $footballMatch->registrations()->with('user')->get();
 
-        return response()->json($players, 200);
+        return response()->json(RegistrationResource::collection($players), 200);
     }
 
     #[OA\Get(
@@ -128,6 +130,6 @@ class RegistrationController extends Controller
     {
         $matches = Auth::user()->registrations()->with('match')->get();
 
-        return response()->json($matches, 200);
+        return response()->json(RegistrationResource::collection($matches), 200);
     }
 }
