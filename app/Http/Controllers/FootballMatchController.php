@@ -189,22 +189,4 @@ class FootballMatchController extends Controller
             'message' => 'Match deleted successfully',
         ], 200);
     }
-
-    #[OA\Get(
-        path: '/api/matches/count',
-        summary: 'Get total available matches',
-        tags: ['Matches']
-    )]
-    #[OA\Response(
-        response: 200,
-        description: 'Total available matches'
-    )]
-    public function count(): JsonResponse
-    {
-        $count = FootballMatch::where('status', 'open')->count();
-
-        return response()->json([
-            'total_available_matches' => $count,
-        ], 200);
-    }
 }

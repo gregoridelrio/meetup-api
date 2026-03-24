@@ -13,7 +13,6 @@ Route::prefix('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 });
 
-Route::get('/matches/count', [FootballMatchController::class, 'count']);
 Route::get('/matches', [FootballMatchController::class, 'index']);
 Route::get('/matches/{footballMatch}', [FootballMatchController::class, 'show']);
 Route::get('/matches/{footballMatch}/comments', [CommentController::class, 'index']);
@@ -27,9 +26,9 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/matches/{footballMatch}', [FootballMatchController::class, 'destroy']);
     });
 
-    Route::post('/matches/{footballMatch}/register', [RegistrationController::class, 'register']);
-    Route::delete('/matches/{footballMatch}/register', [RegistrationController::class, 'unregister']);
+    Route::post('/matches/{footballMatch}/players', [RegistrationController::class, 'register']);
+    Route::delete('/matches/{footballMatch}/players', [RegistrationController::class, 'unregister']);
     Route::post('/matches/{footballMatch}/comments', [CommentController::class, 'store']);
     Route::get('/matches/{footballMatch}/players', [RegistrationController::class, 'players']);
-    Route::get('/user/matches', [RegistrationController::class, 'userMatches']);
+    Route::get('/users/matches', [RegistrationController::class, 'userMatches']);
 });

@@ -13,7 +13,7 @@ use OpenApi\Attributes as OA;
 class RegistrationController extends Controller
 {
     #[OA\Post(
-        path: '/api/matches/{footballMatch}/register',
+        path: '/api/matches/{footballMatch}/players',
         summary: 'Register for a match',
         security: [['bearerAuth' => []]],
         tags: ['Registrations']
@@ -60,7 +60,7 @@ class RegistrationController extends Controller
     }
 
     #[OA\Delete(
-        path: '/api/matches/{footballMatch}/register',
+        path: '/api/matches/{footballMatch}/players',
         summary: 'Unregister from a match',
         security: [['bearerAuth' => []]],
         tags: ['Registrations']
@@ -119,7 +119,7 @@ class RegistrationController extends Controller
     }
 
     #[OA\Get(
-        path: '/api/user/matches',
+        path: '/api/users/matches',
         summary: 'Get matches of authenticated user',
         security: [['bearerAuth' => []]],
         tags: ['Registrations']
