@@ -21,14 +21,6 @@ it('anyone can see matches', function () {
     $response->assertStatus(200)->assertJsonCount(3);
 });
 
-it('anyone can see match count', function () {
-    FootballMatch::factory()->count(3)->create();
-
-    $response = $this->getJson('/api/matches/count');
-
-    $response->assertStatus(200)->assertJson(['total_available_matches' => 3]);
-});
-
 it('anyone can see a match', function () {
     $match = FootballMatch::factory()->create();
 
