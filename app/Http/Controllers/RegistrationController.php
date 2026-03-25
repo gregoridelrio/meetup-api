@@ -133,6 +133,26 @@ class RegistrationController extends Controller
         return response()->json(RegistrationResource::collection($matches), 200);
     }
 
+    #[OA\Get(
+        path: '/api/users/stats',
+        summary: 'Get activity statistics and rank of the authenticated user',
+        security: [['bearerAuth' => []]],
+        tags: ['Registrations']
+    )]
+    #[OA\Response(
+        response: 200,
+        description: 'User statistics calculated successfully',
+        content: new OA\JsonContent(
+            properties: [
+                new OA\Property(property: 'matches_organized', type: 'integer', example: 1),
+                new OA\Property(property: 'matches_joined', type: 'integer', example: 0),
+                new OA\Property(property: 'total_comments', type: 'integer', example: 0),
+                new OA\Property(property: 'activity_score', type: 'integer', example: 10),
+                new OA\Property(property: 'rank', type: 'string', example: 'Rookie', enum: ['Rookie', 'Amateur', 'Pro', 'Legend'])
+            ]
+        )
+    )]
+    #[OA\Response(response: 401, description: 'Unauthenticated')]
     public function userStats(): JsonResponse
     {
         $pointsPerOrganizedMatch = 10;
