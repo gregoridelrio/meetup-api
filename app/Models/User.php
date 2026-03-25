@@ -66,4 +66,31 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function getActivityScore(): int
+    {
+        $pointsPerOrganizedMatch = 10;
+        $pointsPerJoinedMatch = 5;
+        $pointsPerComment = 1;
+
+        $matchesOrganized = $this->organisedMatches()->count();
+        $matchesJoined = $this->registrations()->count();
+        $totalComments = $this->comments()->count();
+
+        return ($matchesOrganized * $pointsPerOrganizedMatch) +
+            ($matchesJoined * $pointsPerJoinedMatch) +
+            ($totalComments * $pointsPerComment);
+    }
+
+    public function getRank(): string
+    {
+        $activityScore = $this->getActivityScore();
+
+        return match (true) {
+            $activityScore >= 100 => 'Legend',
+            $activityScore >= 50 => 'Pro',
+            $activityScore >= 20 => 'Amateur',
+            default => 'Rookie',
+        };
+    }
 }
