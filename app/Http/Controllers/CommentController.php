@@ -15,7 +15,6 @@ class CommentController extends Controller
     #[OA\Get(
         path: '/api/matches/{footballMatch}/comments',
         summary: 'Get comments of a match',
-        security: [['bearerAuth' => []]],
         tags: ['Comments']
     )]
     #[OA\Parameter(name: 'footballMatch', in: 'path', required: true, schema: new OA\Schema(type: 'integer'), example: 1)]
