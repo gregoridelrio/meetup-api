@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\UserResource;
 use OpenApi\Attributes as OA;
 
 
@@ -61,7 +62,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'User registered successfully',
             'token' => $token,
-            'user' => $user,
+            'user' => new UserResource($user),
         ], 201);
     }
 
@@ -108,7 +109,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Login successful',
             'token' => $token,
-            'user' => $user,
+            'user' => new UserResource($user),
         ], 200);
     }
 
