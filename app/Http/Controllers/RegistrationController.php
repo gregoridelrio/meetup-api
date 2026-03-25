@@ -132,4 +132,40 @@ class RegistrationController extends Controller
 
         return response()->json(RegistrationResource::collection($matches), 200);
     }
+
+    public function userStats(): JsonResponse
+    {
+        $pointsPerOrganizedMatch = 10;
+        $pointsPerJoinedMatch = 5;
+        $pointsPerComment = 1;
+
+        $ranks = [
+            'Legend' => 100,
+            'Pro' => 50,
+            'Amateur' => 20,
+        ];
+
+        $user = Auth::user();
+
+        $matchesOrganized = FootballMatch::where('organizer_id', $user->id)->count();
+        $matchesJoined = $user->registrations()->count();
+        $totalComments = $user->comments()->count();
+
+        $activityScore = ($matchesOrganized * $pointsPerOrganizedMatch) + ($matchesJoined * $pointsPerJoinedMatch) + ($totalComments * $pointsPerComment);
+
+        $rank = match (true) {
+            $activityScore >= $ranks['Legend'] => 'Legend',
+            $activityScore >= $ranks['Pro'] => 'Pro',
+            $activityScore >= $ranks['Amateur'] => 'Amateur',
+            default => 'Rookie',
+        };
+
+        return response()->json([
+            'matches_organized' => $matchesOrganized,
+            'matches_joined' => $matchesJoined,
+            'total_comments' => $totalComments,
+            'activity_score' => $activityScore,
+            'rank' => $rank,
+        ], 200);
+    }
 }

@@ -535,27 +535,44 @@
                 ]
             }
         },
-        "/api/matches/count": {
+        "/api/matches/{footballMatch}/players": {
             "get": {
                 "tags": [
-                    "Matches"
+                    "Registrations"
                 ],
-                "summary": "Get total available matches",
-                "operationId": "2b34313f06a90197bc5bea7cfcebc673",
+                "summary": "Get players registered to a match",
+                "operationId": "3cd6266d8e12520913be7484939fc52b",
+                "parameters": [
+                    {
+                        "name": "footballMatch",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Total available matches"
+                        "description": "List of players"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
                     }
-                }
-            }
-        },
-        "/api/matches/{footballMatch}/register": {
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
             "post": {
                 "tags": [
                     "Registrations"
                 ],
                 "summary": "Register for a match",
-                "operationId": "91d657acc115fa2d6971100ea716247b",
+                "operationId": "4f0df79a31aa90dc0217ac3edc12a28e",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -589,7 +606,7 @@
                     "Registrations"
                 ],
                 "summary": "Unregister from a match",
-                "operationId": "0bc6bfffe36ce1ed280317a62b51147c",
+                "operationId": "083350df80ce024646fb3b5a54432d73",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -619,46 +636,13 @@
                 ]
             }
         },
-        "/api/matches/{footballMatch}/players": {
-            "get": {
-                "tags": [
-                    "Registrations"
-                ],
-                "summary": "Get players registered to a match",
-                "operationId": "3cd6266d8e12520913be7484939fc52b",
-                "parameters": [
-                    {
-                        "name": "footballMatch",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "example": 1
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of players"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/user/matches": {
+        "/api/users/matches": {
             "get": {
                 "tags": [
                     "Registrations"
                 ],
                 "summary": "Get matches of authenticated user",
-                "operationId": "ec6614b75d2e23cf9b93c195fc231f2e",
+                "operationId": "abb32bd23a60a4e022dbe10187f37fda",
                 "responses": {
                     "200": {
                         "description": "List of user matches"
