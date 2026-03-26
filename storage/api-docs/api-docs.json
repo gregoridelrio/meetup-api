@@ -206,12 +206,7 @@
                     "200": {
                         "description": "List of comments"
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [

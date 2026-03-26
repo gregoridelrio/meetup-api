@@ -12,9 +12,12 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'email' => $this->email,
             'skill_level' => $this->skill_level,
             'favourite_position' => $this->favourite_position,
-            'role' => $this->role,
+            'activity_score' => $this->getActivityScore(),
+            'rank' => $this->getRank(),
+            'role' => $this->getRoleNames()->first(),
         ];
     }
 }
