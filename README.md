@@ -62,7 +62,12 @@ php artisan passport:install
 php artisan passport:client --personal
 ```
 
-8. Inicia el servidor:
+8. Genera la documentación Swagger:
+```bash
+php artisan l5-swagger:generate
+```
+
+9. Inicia el servidor:
 ```bash
 php artisan serve
 ```
