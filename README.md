@@ -127,6 +127,6 @@ http://127.0.0.1:8000/api/documentation
 
 | Email | Password | Rol |
 |-------|----------|-----|
-| admin@meetup.com | password123 | admin |
-| player1@meetup.com | password123 | player |
-| player2@meetup.com | password123 | player |
+| admin@email.com | Admin1234 | admin |
+| pepito@email.com | Password1234 | player |
+| juanito@email.com | Password431 | player |
