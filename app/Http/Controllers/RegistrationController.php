@@ -31,6 +31,12 @@ class RegistrationController extends Controller
     {
         $user = Auth::user();
 
+        if ($footballMatch->status !== 'open') {
+            return response()->json([
+                'message' => 'Match is not open for registration',
+            ], 400);
+        }
+
         if ($footballMatch->registrations()->count() >= $footballMatch->max_players) {
             return response()->json([
                 'message' => 'Match is full',
