@@ -31,8 +31,8 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/matches/{footballMatch}/players', [RegistrationController::class, 'unregister']);
     Route::post('/matches/{footballMatch}/comments', [CommentController::class, 'store']);
     Route::get('/matches/{footballMatch}/players', [RegistrationController::class, 'players']);
-    Route::get('/users/matches', [RegistrationController::class, 'userMatches']);
-    Route::get('/users/stats', [RegistrationController::class, 'userStats']);
 
-    Route::patch('/users', [UserController::class, 'update']);
+    Route::get('/users/matches', [UserController::class, 'userMatches']);
+    Route::get('/users/stats', [UserController::class, 'userStats']);
+    Route::patch('/users/profile', [UserController::class, 'update']);
 });
