@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FootballMatchController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,4 +33,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/matches/{footballMatch}/players', [RegistrationController::class, 'players']);
     Route::get('/users/matches', [RegistrationController::class, 'userMatches']);
     Route::get('/users/stats', [RegistrationController::class, 'userStats']);
+
+    Route::patch('/users', [UserController::class, 'update']);
 });
