@@ -56,10 +56,9 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-7. Instala Passport y crea el cliente de acceso personal: (Si pregunta commo llamar al cliente poner: meetup-api)
+7. Instala Passport
 ```bash
 php artisan passport:install
-php artisan passport:client --personal
 ```
 
 8. Genera la documentación Swagger:
