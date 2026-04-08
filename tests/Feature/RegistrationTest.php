@@ -4,11 +4,8 @@ use App\Models\FootballMatch;
 use App\Models\User;
 use App\Models\Registration;
 use App\Models\Comment;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
 use Spatie\Permission\Models\Role;
-
-uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Role::create(['name' => 'admin']);
