@@ -4,9 +4,6 @@ use App\Models\Comment;
 use App\Models\FootballMatch;
 use App\Models\User;
 use Laravel\Passport\Passport;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
 
 it('anyone can see comments for a match', function () {
     $match = FootballMatch::factory()->create();
