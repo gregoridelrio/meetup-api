@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UserResource;
+use Illuminate\Validation\Rules\Password;
 
 
 class AuthController extends Controller
@@ -18,7 +19,12 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:45',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                Password::min(8)->letters()->numbers()->symbols()->mixedCase()
+            ],
             'phone' => 'nullable|string|max:9',
             'skill_level' => 'nullable|in:beginner,intermediate,advanced',
             'favourite_position' => 'nullable|in:goalkeeper,defender,midfielder,striker',
