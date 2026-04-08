@@ -17,7 +17,7 @@
                     "Auth"
                 ],
                 "summary": "Register a new user",
-                "operationId": "d764dd091cc4494ae0baf360b03319f3",
+                "operationId": "dbbeb34bb1676cb88fa23f12e43b6ec0",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -89,7 +89,7 @@
                     "Auth"
                 ],
                 "summary": "Login user and get token",
-                "operationId": "8dcb70df1020986038d098cc08d05dae",
+                "operationId": "c34dec07634d0bdcec1c5ce5b64d6c98",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -155,7 +155,7 @@
                     "Auth"
                 ],
                 "summary": "Logout user and revoke token",
-                "operationId": "69281b12abb272c76871f19cb17ca563",
+                "operationId": "5690fc0e883dcb2758c97a6fce552656",
                 "responses": {
                     "200": {
                         "description": "Logged out successfully",
@@ -190,7 +190,7 @@
                     "Comments"
                 ],
                 "summary": "Get comments of a match",
-                "operationId": "cf9a4c0dc18b479fe023296c8586b018",
+                "operationId": "5b8c40899f1042a62f0b051a1d15299c",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -205,6 +205,9 @@
                 "responses": {
                     "200": {
                         "description": "List of comments"
+                    },
+                    "404": {
+                        "description": "Match not found"
                     }
                 }
             },
@@ -213,7 +216,7 @@
                     "Comments"
                 ],
                 "summary": "Create a comment for a match",
-                "operationId": "560dce054e7a6fd34b99a1a880b75e69",
+                "operationId": "ae6b823fb3ac94caf085db73670bd67a",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -236,7 +239,7 @@
                                 "properties": {
                                     "content": {
                                         "type": "string",
-                                        "example": "Apuntado al partido!"
+                                        "example": "¡Apuntado al partido!"
                                     }
                                 },
                                 "type": "object"
@@ -253,6 +256,9 @@
                     },
                     "422": {
                         "description": "Validation error"
+                    },
+                    "404": {
+                        "description": "Match not found"
                     }
                 },
                 "security": [
@@ -268,7 +274,7 @@
                     "Matches"
                 ],
                 "summary": "Get list of matches",
-                "operationId": "c0735c7be1ec75cab53dd45bfed420ef",
+                "operationId": "25f4b6ec0caf0d2a935e30b1855f9075",
                 "responses": {
                     "200": {
                         "description": "List of matches"
@@ -280,7 +286,7 @@
                     "Matches"
                 ],
                 "summary": "Create a new match",
-                "operationId": "6d1c46be4db252cc42bd1a24914b76bb",
+                "operationId": "e9cecf0eadfc2ef12061d9b6bf0af32b",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -370,7 +376,7 @@
                     "Matches"
                 ],
                 "summary": "Get a match by ID",
-                "operationId": "65ff32a940e20c21994a325890150c37",
+                "operationId": "251f16463ce5ce2b9e36b61278794125",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -396,7 +402,7 @@
                     "Matches"
                 ],
                 "summary": "Update a match",
-                "operationId": "9c25d3b62e762ec2f29985ed0fb4bc5a",
+                "operationId": "89d5faa6c9a744d64d75d2c681937278",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -497,7 +503,7 @@
                     "Matches"
                 ],
                 "summary": "Delete a match",
-                "operationId": "14612e734d23d8cf6ad32497c4ae1d65",
+                "operationId": "680733370ed86192b9f49084b626f4f5",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -536,7 +542,7 @@
                     "Registrations"
                 ],
                 "summary": "Get players registered to a match",
-                "operationId": "3cd6266d8e12520913be7484939fc52b",
+                "operationId": "19230d0c47a68072dcab9041531d83e1",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -567,7 +573,7 @@
                     "Registrations"
                 ],
                 "summary": "Register for a match",
-                "operationId": "4f0df79a31aa90dc0217ac3edc12a28e",
+                "operationId": "4533c4177ecab9620413283e1b4d0301",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -601,7 +607,7 @@
                     "Registrations"
                 ],
                 "summary": "Unregister from a match",
-                "operationId": "083350df80ce024646fb3b5a54432d73",
+                "operationId": "a01c5b99473dc1418ec2082e1fe37d89",
                 "parameters": [
                     {
                         "name": "footballMatch",
@@ -637,7 +643,7 @@
                     "User"
                 ],
                 "summary": "Get matches of authenticated user",
-                "operationId": "849b03338a590a12b87bd594a484ae4e",
+                "operationId": "1de1adeb3caaf48d9f8a36e47e15e222",
                 "responses": {
                     "200": {
                         "description": "List of user matches"
@@ -659,7 +665,7 @@
                     "User"
                 ],
                 "summary": "Get activity statistics and rank of the authenticated user",
-                "operationId": "580427a0524860ce1d0a10d3f76e891a",
+                "operationId": "d0f288edf42185234d921229c8cfc986",
                 "responses": {
                     "200": {
                         "description": "User statistics calculated successfully",
@@ -711,12 +717,64 @@
             }
         },
         "/api/users/profile": {
-            "get": {
+            "patch": {
                 "tags": [
                     "User"
                 ],
-                "summary": "Get authenticated user profile",
-                "operationId": "8ab86f48f9e106429fca8ecd43cde47d",
+                "summary": "Update authenticated user profile",
+                "operationId": "bbae4ab5a966b4740f7cb28e687ab954",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "maxLength": 9
+                                    },
+                                    "skill_level": {
+                                        "type": "string",
+                                        "enum": [
+                                            "beginner",
+                                            "intermediate",
+                                            "advanced"
+                                        ]
+                                    },
+                                    "favourite_position": {
+                                        "type": "string",
+                                        "enum": [
+                                            "goalkeeper",
+                                            "defender",
+                                            "midfielder",
+                                            "striker"
+                                        ]
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "minLength": 8
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Profile updated successfully"
