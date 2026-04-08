@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\RegistrationResource;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -42,7 +43,12 @@ class UserController extends Controller
             'phone' => 'sometimes|nullable|string|max:9',
             'skill_level' => 'sometimes|nullable|in:beginner,intermediate,advanced',
             'favourite_position' => 'sometimes|nullable|in:goalkeeper,defender,midfielder,striker',
-            'password' => 'sometimes|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                Password::min(8)->letters()->numbers()->symbols()->mixedCase()
+            ],
         ]);
 
         if (isset($validated['password'])) {
