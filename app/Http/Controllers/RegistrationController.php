@@ -7,26 +7,9 @@ use App\Models\Registration;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\RegistrationResource;
-use OpenApi\Attributes as OA;
 
 class RegistrationController extends Controller
 {
-    #[OA\Post(
-        path: '/api/matches/{footballMatch}/players',
-        summary: 'Register for a match',
-        security: [['bearerAuth' => []]],
-        tags: ['Registrations']
-    )]
-    #[OA\Parameter(
-        name: 'footballMatch',
-        in: 'path',
-        required: true,
-        schema: new OA\Schema(type: 'integer'),
-        example: 1
-    )]
-    #[OA\Response(response: 201, description: 'Registered successfully')]
-    #[OA\Response(response: 400, description: 'Match is full or already registered')]
-    #[OA\Response(response: 401, description: 'Unauthenticated')]
     public function register(FootballMatch $footballMatch): JsonResponse
     {
         $user = Auth::user();
@@ -64,22 +47,6 @@ class RegistrationController extends Controller
         ], 201);
     }
 
-    #[OA\Delete(
-        path: '/api/matches/{footballMatch}/players',
-        summary: 'Unregister from a match',
-        security: [['bearerAuth' => []]],
-        tags: ['Registrations']
-    )]
-    #[OA\Parameter(
-        name: 'footballMatch',
-        in: 'path',
-        required: true,
-        schema: new OA\Schema(type: 'integer'),
-        example: 1
-    )]
-    #[OA\Response(response: 200, description: 'Unregistered successfully')]
-    #[OA\Response(response: 400, description: 'Not registered for this match')]
-    #[OA\Response(response: 401, description: 'Unauthenticated')]
     public function unregister(FootballMatch $footballMatch): JsonResponse
     {
         $user = Auth::user();
@@ -101,21 +68,6 @@ class RegistrationController extends Controller
         ], 200);
     }
 
-    #[OA\Get(
-        path: '/api/matches/{footballMatch}/players',
-        summary: 'Get players registered to a match',
-        security: [['bearerAuth' => []]],
-        tags: ['Registrations']
-    )]
-    #[OA\Parameter(
-        name: 'footballMatch',
-        in: 'path',
-        required: true,
-        schema: new OA\Schema(type: 'integer'),
-        example: 1
-    )]
-    #[OA\Response(response: 200, description: 'List of players')]
-    #[OA\Response(response: 401, description: 'Unauthenticated')]
     public function players(FootballMatch $footballMatch): JsonResponse
     {
         $players = $footballMatch->registrations()->with('user')->get();
