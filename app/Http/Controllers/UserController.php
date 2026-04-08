@@ -44,7 +44,7 @@ class UserController extends Controller
             'skill_level' => 'sometimes|nullable|in:beginner,intermediate,advanced',
             'favourite_position' => 'sometimes|nullable|in:goalkeeper,defender,midfielder,striker',
             'password' => [
-                'required',
+                'sometimes',
                 'string',
                 'confirmed',
                 Password::min(8)->letters()->numbers()->symbols()->mixedCase()
