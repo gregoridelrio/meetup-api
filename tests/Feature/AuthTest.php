@@ -1,12 +1,9 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-
-uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Role::create(['name' => 'admin']);
