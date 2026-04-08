@@ -22,11 +22,23 @@ it('user can register', function () {
     $response = $this->postJson('/api/auth/register', [
         'name' => 'Test User',
         'email' => 'test@test.com',
-        'password' => 'password123',
-        'password_confirmation' => 'password123',
+        'password' => 'Password123-',
+        'password_confirmation' => 'Password123-',
     ]);
 
     $response->assertStatus(201)->assertJsonStructure(['message', 'token', 'user']);
+});
+
+it('cannot register with a weak password', function () {
+
+    $response = $this->postJson('/api/auth/register', [
+        'name' => 'Test User',
+        'email' => 'test@test.com',
+        'password' => '00000000',
+        'password_confirmation' => '00000000',
+    ]);
+
+    $response->assertStatus(422);
 });
 
 it('user cannot register with invalid data', function () {
