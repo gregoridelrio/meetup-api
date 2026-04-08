@@ -716,13 +716,13 @@
                 ]
             }
         },
-        "/api/users/profile": {
+        "/api/users": {
             "patch": {
                 "tags": [
                     "User"
                 ],
                 "summary": "Update authenticated user profile",
-                "operationId": "bbae4ab5a966b4740f7cb28e687ab954",
+                "operationId": "6d3568acaad7e4cea19a68fbc4eeda33",
                 "requestBody": {
                     "required": true,
                     "content": {
