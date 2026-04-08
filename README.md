@@ -130,6 +130,7 @@ php artisan test
 |--------|----------|-------------|------|
 | GET | /api/users/matches | Mis partidos | Sí |
 | GET | /api/users/stats | Mis estadísticas | Sí |
+| PATCH | /api/users | Actualiza el perfil | Sí |
 
 ## Roles
 
