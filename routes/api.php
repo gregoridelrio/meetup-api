@@ -34,5 +34,5 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/users/matches', [UserController::class, 'userMatches']);
     Route::get('/users/stats', [UserController::class, 'userStats']);
-    Route::patch('/users/profile', [UserController::class, 'update']);
+    Route::patch('/users', [UserController::class, 'update']);
 });
