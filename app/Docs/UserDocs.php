@@ -43,7 +43,7 @@ class UserDocs
   public function userStats() {}
 
   #[OA\Patch(
-    path: '/api/users/profile',
+    path: '/api/users',
     summary: 'Update authenticated user profile',
     security: [['bearerAuth' => []]],
     tags: ['User'],
