@@ -41,7 +41,7 @@ cp .env.example .env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=meetup_api
+DB_DATABASE=nombre_de_tu_bbdd
 DB_USERNAME=root
 DB_PASSWORD=tu_password
 ```
@@ -56,9 +56,10 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-7. Instala Passport
+7. Genera las claves de Passport y crea el cliente personal:
 ```bash
-php artisan passport:install
+php artisan passport:keys
+php artisan passport:client --personal --no-interaction
 ```
 
 8. Genera la documentación Swagger:
@@ -76,6 +77,21 @@ php artisan serve
 Una vez iniciado el servidor, accede a la documentación Swagger en:
 ```
 http://127.0.0.1:8000/api/documentation
+```
+
+## Tests
+
+Para ejecutar los tests asegúrate de tener configurado el `phpunit.xml` con SQLite:
+
+```phpunit.xml
+<env name="DB_CONNECTION" value="sqlite"/>
+<env name="DB_DATABASE" value=":memory:"/>
+```
+
+Luego ejecuta:
+
+```bash
+php artisan test
 ```
 
 ## Endpoints
